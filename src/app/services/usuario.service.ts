@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Usuario } from '../models/usuario.models';
+import { Observable } from 'rxjs';
 
 
 interface MyResponse {
@@ -25,10 +26,17 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  getUsuarios() {
-    return this.http.get<MyResponse>(`${this.url}/users?per_page=6`)
+  getUsuarios(): Observable<Usuario[]> {
+    return this.http.get<MyResponse>(`${this.url}/users?delay=2`) 
       .pipe(
-        map(resp => resp.data)
+        map(resp => resp.data) 
+      );
+  }
+
+  getUserById(id: string ): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.url}/users/${id}`) 
+      .pipe(
+        map(resp => resp)
       );
   }
 }

@@ -1,1 +1,14 @@
-<p>usuario works!</p>
+<div class="row">
+    <div class="col-4">
+        <img [src]="usuario?.avatar" class="img-fluid rounded-circle" alt="...">
+    </div>
+    <div class="col">
+        <div class="list-group">
+            <div class="list-group-item">
+                <li class="list-group-item"><b>{{usuario?.first_name}}</b></li>
+                <li class="list-group-item">{{usuario?.last_name}}</li>
+                <li class="list-group-item">{{usuario?.email}}</li>
+            </div>
+        </div>
+    </div>
+</div>
